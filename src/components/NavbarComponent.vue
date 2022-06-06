@@ -1,20 +1,20 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
+    <div class="container">
+      <a class="navbar-brand" href="#">94/20RN</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#myNavbar" aria-controls="myNavbar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <router-link to="/" tag="a" class="nav-link">Home</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <router-link to="/top10" tag="a" class="nav-link">Top 10</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <router-link to="/categories" tag="a" class="nav-link">Categories</router-link>
           </li>
         </ul>
       </div>
@@ -24,18 +24,7 @@
 
 <script>
 export default {
-  name: "NavbarComponent",
-  computed: {
-    canLogout() {
-      return this.$route.name !== 'Login';
-    }
-  },
-  methods: {
-    logout() {
-      localStorage.removeItem('jwt');
-      this.$router.push({name: 'Login'});
-    }
-  }
+  name: "NavbarComponent"
 }
 </script>
 
