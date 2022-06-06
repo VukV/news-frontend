@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TitleComponent title="Top 10" description="Top 10 articles"></TitleComponent>
+    <TitleComponent title="Top" description="Top 10 articles"></TitleComponent>
   </div>
 </template>
 
@@ -11,6 +11,16 @@ export default {
   name: "TopTenView",
   components:{
     TitleComponent
+  },
+  data() {
+    return {
+      articles: [],
+      clickedArticle: false,
+      showArticles: true
+    }
+  },
+  created() {
+    //todo fetch articles
   }
 }
 </script>

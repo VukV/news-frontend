@@ -1,12 +1,15 @@
 <template>
   <div>
-    <TitleComponent title="Categories" description="All articles by categories"></TitleComponent>
+    <TitleComponent title="Categories" description="Search articles by category"></TitleComponent>
   </div>
 </template>
 
 <script>
 import TitleComponent from "@/components/TitleComponent";
 
+//todo v-if za prikaze
+//todo v-for za svaku vest
+//todo single article - props:article
 export default {
   name: "CategoriesView",
   components: {
@@ -14,11 +17,13 @@ export default {
   },
   data() {
     return {
-      articles: {}
+      categories: [],
+      clickedArticle: false,
+      showArticles: true
     }
   },
   created() {
-    //TODO fetch articles
+    //TODO fetch categories
   }
 }
 </script>
