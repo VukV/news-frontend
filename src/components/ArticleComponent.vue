@@ -2,7 +2,8 @@
   <div class="article-single-div">
     <h3>{{ article.title }}</h3>
     <h6>{{ category.name }}, {{ article.date }}</h6>
-    <!-- LIMIT PARAGRAPH -->
+
+    <p>{{ article.content.substring(0,50)+"..." }}</p>
   </div>
 </template>
 

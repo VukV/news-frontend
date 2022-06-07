@@ -1,6 +1,8 @@
 <template>
   <div>
     <TitleComponent title="Top" description="Top 10 articles"></TitleComponent>
+
+    <ArticleComponent v-for="a in articles" :key="a.id" article="{{ a }}"></ArticleComponent>
   </div>
 </template>
 

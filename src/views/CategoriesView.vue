@@ -1,6 +1,8 @@
 <template>
   <div>
     <TitleComponent title="Categories" description="Search articles by category"></TitleComponent>
+
+    <ArticleComponent v-for="a in articles" :key="a.id" article="{{ a }}"></ArticleComponent>
   </div>
 </template>
 
@@ -18,6 +20,7 @@ export default {
   data() {
     return {
       categories: [],
+      articles: [],
       clickedArticle: false,
       showArticles: true
     }
@@ -26,6 +29,7 @@ export default {
     //TODO fetch categories
   },
   methods:{
+    //todo method za klik na select category - fetch za articles
     //todo method za article on slick -> router.push single article
   }
 }
