@@ -1,12 +1,15 @@
 <template>
   <div>
     <TitleComponent title="Home" description="Newest articles"></TitleComponent>
+
+    <ArticleComponent v-for="a in articles" :key="a.id" article="{{ a }}"></ArticleComponent>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import TitleComponent from "@/components/TitleComponent";
+import ArticleComponent from "@/components/ArticleComponent";
 
 //todo v-if za prikaze
 //todo v-for za svaku vest
@@ -14,6 +17,7 @@ import TitleComponent from "@/components/TitleComponent";
 export default {
   name: 'HomeView',
   components:{
+    ArticleComponent,
     TitleComponent
   },
   data() {
@@ -23,7 +27,7 @@ export default {
       showArticles: true
     }
   },
-  created() {
+  mounted: {
     //todo fetch articles
   }
 }

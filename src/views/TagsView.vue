@@ -17,7 +17,7 @@ export default {
   props:{
     tag: Object
   },
-  created() {
+  mounted: {
     //todo fetch articles by tag
   }
 }

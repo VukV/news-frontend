@@ -22,8 +22,11 @@ export default {
       showArticles: true
     }
   },
-  created() {
+  mounted: {
     //TODO fetch categories
+  },
+  methods:{
+    //todo method za article on slick -> router.push single article
   }
 }
 </script>

@@ -19,7 +19,7 @@ export default {
       showArticles: true
     }
   },
-  created() {
+  mounted: {
     //todo fetch articles
   }
 }
