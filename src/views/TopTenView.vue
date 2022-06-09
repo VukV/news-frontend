@@ -2,31 +2,34 @@
   <div>
     <TitleComponent title="Top" description="Top 10 articles"></TitleComponent>
 
-    <ArticleComponent v-for="a in articles" :key="a.id" article="{{ a }}"></ArticleComponent>
+    <div v-for="a in articles" :key="a.id" class="articles-div">
+      <ArticleComponent :article="a"></ArticleComponent>
+    </div>
+
   </div>
 </template>
 
 <script>
 import TitleComponent from "@/components/TitleComponent";
+import ArticleComponent from "@/components/ArticleComponent";
 
 export default {
   name: "TopTenView",
   components:{
-    TitleComponent
+    TitleComponent,
+    ArticleComponent
   },
   data() {
     return {
-      articles: [],
-      clickedArticle: false,
-      showArticles: true
+      articles: []
     }
   },
-  mounted: {
-    //todo fetch articles
+  mounted() {
+    this.$axios.get('/api/articles/top')
+        .then(response => {
+          this.articles = response.data;
+        })
   }
 }
 </script>
 
-<style scoped>
-
-</style>

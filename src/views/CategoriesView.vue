@@ -2,35 +2,32 @@
   <div>
     <TitleComponent title="Categories" description="Search articles by category"></TitleComponent>
 
-    <ArticleComponent v-for="a in articles" :key="a.id" article="{{ a }}"></ArticleComponent>
+    <ArticleComponent v-for="a in articles" :key="a.id" article=a></ArticleComponent>
   </div>
 </template>
 
 <script>
 import TitleComponent from "@/components/TitleComponent";
+import ArticleComponent from "@/components/ArticleComponent";
 
-//todo v-if za prikaze
-//todo v-for za svaku vest
-//todo single article - props:article
 export default {
   name: "CategoriesView",
   components: {
-    TitleComponent
+    TitleComponent,
+    ArticleComponent
   },
   data() {
     return {
       categories: [],
-      articles: [],
-      clickedArticle: false,
-      showArticles: true
+      articles: []
     }
   },
-  mounted: {
+  mounted() {
     //TODO fetch categories
   },
   methods:{
     //todo method za klik na select category - fetch za articles
-    //todo method za article on slick -> router.push single article
+    //todo method za article on click -> router.push single article
   }
 }
 </script>

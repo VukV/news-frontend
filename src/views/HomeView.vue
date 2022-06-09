@@ -2,7 +2,10 @@
   <div>
     <TitleComponent title="Home" description="Newest articles"></TitleComponent>
 
-    <ArticleComponent v-for="a in articles" :key="a.id" article="{{ a }}"></ArticleComponent>
+    <div v-for="a in articles" :key="a.id" class="articles-div">
+      <ArticleComponent :article="a"></ArticleComponent>
+    </div>
+
   </div>
 </template>
 
@@ -11,9 +14,6 @@
 import TitleComponent from "@/components/TitleComponent";
 import ArticleComponent from "@/components/ArticleComponent";
 
-//todo v-if za prikaze
-//todo v-for za svaku vest
-//todo single article - props:article
 export default {
   name: 'HomeView',
   components:{
@@ -22,13 +22,21 @@ export default {
   },
   data() {
     return {
-      articles: [],
-      clickedArticle: false,
-      showArticles: true
+      articles: []
     }
   },
-  mounted: {
-    //todo fetch articles
+  mounted() {
+   this.$axios.get('/api/articles/newest')
+       .then(response => {
+         this.articles = response.data;
+       })
   }
 }
 </script>
+
+<style>
+  .articles-div{
+    margin: auto;
+    width: 50%;
+  }
+</style>

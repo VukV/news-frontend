@@ -21,5 +21,6 @@ export default {
 <style scoped>
   #title-div{
     margin-top: 1.2em;
+    margin-bottom: 2em;
   }
 </style>

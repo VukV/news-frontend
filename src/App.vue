@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div id="main-div">
     <NavbarComponent></NavbarComponent>
 
     <div class="container">
-      <router-view/>
+        <router-view/>
     </div>
   </div>
 </template>
@@ -16,3 +16,10 @@ export default {
   }
 }
 </script>
+
+<style>
+  #main-div{
+    text-align: center;
+
+  }
+</style>
