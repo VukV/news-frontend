@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import router from "@/router";
+
 export default {
   name: "ArticleComponent",
   props:{
@@ -26,7 +28,8 @@ export default {
   },
   methods:{
     openArticle(article){
-      //todo route
+      let articleId = article.id;
+      router.push({name: 'Single Article', params: {id: articleId}})
     }
   },
   filters:{
