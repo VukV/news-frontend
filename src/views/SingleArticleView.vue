@@ -12,7 +12,7 @@
 
     <h6>Tags:</h6>
     <span v-for="tag in tags" :key="tag.id">
-      <span @click="openArticlesByTag(tag.id)" class="tag-span">{{ tag.name }}</span>
+      <span @click="openArticlesByTag(tag.id, tag.name)" class="tag-span">{{ tag.name }}</span>
     </span>
 
     <br>
@@ -94,9 +94,10 @@ export default {
     }
   },
   methods:{
-    openArticlesByTag(tagId){
-      router.push({name: 'Tags', params: {id: tagId}})
+    openArticlesByTag(tagId, tagName){
+      router.push({name: 'Tags', params: {id: tagId}, query: {name: tagName}})
     },
+
     addComment(){
       let author = document.getElementById('author').value;
       let content = document.getElementById('content').value;

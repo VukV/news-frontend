@@ -1,28 +1,51 @@
 <template>
   <div>
     <TitleComponent title="Tags" description="Articles by selected tag"></TitleComponent>
+
+    <h6 class="tag-h">{{ tag.name }}</h6>
+    <br>
+
+    <div v-for="a in articles" :key="a.id" class="articles-div">
+      <ArticleComponent :article="a"></ArticleComponent>
+    </div>
   </div>
 </template>
 
 <script>
-//todo prosledjivanje props kroz ruter
-//https://stackoverflow.com/questions/45151810/passing-props-with-programmatic-navigation-vue-js
 import TitleComponent from "@/components/TitleComponent";
+import ArticleComponent from "@/components/ArticleComponent";
 
 export default {
   name: "TagsView",
   components:{
-    TitleComponent
+    TitleComponent,
+    ArticleComponent
   },
-  props:{
-    tag: Object
+  data() {
+    return {
+      tag: Object,
+      articles: []
+    }
   },
-  mounted() {
-    //todo fetch articles by tag
+  created() {
+    let tagId = this.$route.params.id;
+    let tagName = this.$route.query.name;
+
+    this.tag = {
+      id: tagId,
+      name: tagName
+    }
+
+    this.$axios.get('/api/articles/article/tag/' + tagId)
+        .then(response => {
+          this.articles = response.data;
+        })
   }
 }
 </script>
 
 <style scoped>
-
+  .tag-h{
+    color: cadetblue;
+  }
 </style>
