@@ -21,7 +21,14 @@
       </div>
     </div>
     <div v-else>
-      <p class="nothing-found">There are no articles with selected category...</p>
+      <NotFoundComponent message="There are no articles with selected category..."></NotFoundComponent>
+    </div>
+
+    <div class="pageable-div">
+      <span>
+        <button type="button" class="btn btn-outline-primary" @click="pageBefore">&lt;&lt;</button>
+        <button type="button" class="btn btn-outline-primary" @click="pageAfter">&gt;&gt;</button>
+      </span>
     </div>
 
   </div>
@@ -30,17 +37,21 @@
 <script>
 import TitleComponent from "@/components/TitleComponent";
 import ArticleComponent from "@/components/ArticleComponent";
+import NotFoundComponent from "@/components/NotFoundComponent";
 
 export default {
   name: "CategoriesView",
   components: {
     TitleComponent,
-    ArticleComponent
+    ArticleComponent,
+    NotFoundComponent,
   },
   data() {
     return {
       categories: [],
-      articles: []
+      selectedCategory: Number,
+      articles: [],
+      page: 1
     }
   },
   mounted() {
@@ -53,13 +64,32 @@ export default {
   },
   methods:{
     selectCategory(onMount){
-      let categoryId = document.getElementById('categories').value;
-
       if(onMount){
-        categoryId = this.categories[0].id;
+        this.selectedCategory = this.categories[0].id;
+      }
+      else {
+        this.selectedCategory = document.getElementById('categories').value;
       }
 
-      this.$axios.get('/api/articles/category/' + categoryId)
+      this.$axios.get('/api/articles/category/' + this.selectedCategory, { params: {page: this.page}})
+          .then(response => {
+            this.articles = response.data;
+          });
+    },
+
+    pageBefore(){
+      if(this.page > 1){
+        this.page -= 1;
+        this.$axios.get('/api/articles/category/' + this.selectedCategory, { params: {page: this.page}})
+            .then(response => {
+              this.articles = response.data;
+            });
+      }
+    },
+
+    pageAfter(){
+      this.page += 1;
+      this.$axios.get('/api/articles/category/' + this.selectedCategory, { params: {page: this.page}})
           .then(response => {
             this.articles = response.data;
           });
@@ -77,7 +107,25 @@ export default {
     box-shadow: 0 0 0 0.2rem rgb(95, 158, 160, 0.25);
   }
 
-  .nothing-found{
-    margin-top: 20px;
+  .btn-primary{
+    background-color: cadetblue !important;
+    border-color: cadetblue;
+  }
+
+  .btn-primary:focus, .btn-outline-primary:focus{
+    border-color: cadetblue;
+    box-shadow: 0 0 0 0.2rem rgb(95, 158, 160, 0.25);
+  }
+
+  .btn-outline-primary{
+    color: cadetblue !important;
+    border-color: cadetblue;
+    margin: 10px;
+  }
+
+  .btn-outline-primary:hover{
+    background-color: cadetblue !important;
+    color: white !important;
+    border-color: cadetblue !important;
   }
 </style>

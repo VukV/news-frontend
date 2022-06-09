@@ -8,7 +8,7 @@
       </div>
     </div>
     <div v-else>
-      <p class="nothing-found">There are no articles...</p>
+      <NotFoundComponent message="There are no articles..."></NotFoundComponent>
     </div>
 
   </div>
@@ -17,12 +17,14 @@
 <script>
 import TitleComponent from "@/components/TitleComponent";
 import ArticleComponent from "@/components/ArticleComponent";
+import NotFoundComponent from "@/components/NotFoundComponent";
 
 export default {
   name: "TopTenView",
   components:{
     TitleComponent,
-    ArticleComponent
+    ArticleComponent,
+    NotFoundComponent
   },
   data() {
     return {

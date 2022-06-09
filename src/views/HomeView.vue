@@ -8,7 +8,7 @@
       </div>
     </div>
     <div v-else>
-      <p class="nothing-found">There are no articles...</p>
+      <NotFoundComponent message="There are no articles..."></NotFoundComponent>
     </div>
 
   </div>
@@ -18,12 +18,14 @@
 // @ is an alias to /src
 import TitleComponent from "@/components/TitleComponent";
 import ArticleComponent from "@/components/ArticleComponent";
+import NotFoundComponent from "@/components/NotFoundComponent";
 
 export default {
   name: 'HomeView',
   components:{
     ArticleComponent,
-    TitleComponent
+    TitleComponent,
+    NotFoundComponent
   },
   data() {
     return {

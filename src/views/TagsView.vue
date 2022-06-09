@@ -11,7 +11,14 @@
       </div>
     </div>
     <div v-else>
-      <p class="nothing-found">There are no articles with selected tag ...</p>
+      <NotFoundComponent message="There are no articles with selected tag..."></NotFoundComponent>
+    </div>
+
+    <div class="pageable-div">
+      <span>
+        <button type="button" class="btn btn-outline-primary" @click="pageBefore">&lt;&lt;</button>
+        <button type="button" class="btn btn-outline-primary" @click="pageAfter">&gt;&gt;</button>
+      </span>
     </div>
 
   </div>
@@ -20,17 +27,20 @@
 <script>
 import TitleComponent from "@/components/TitleComponent";
 import ArticleComponent from "@/components/ArticleComponent";
+import NotFoundComponent from "@/components/NotFoundComponent";
 
 export default {
   name: "TagsView",
   components:{
     TitleComponent,
-    ArticleComponent
+    ArticleComponent,
+    NotFoundComponent,
   },
   data() {
     return {
       tag: Object,
-      articles: []
+      articles: [],
+      page: 1
     }
   },
   created() {
@@ -42,10 +52,27 @@ export default {
       name: tagName
     }
 
-    this.$axios.get('/api/articles/article/tag/' + tagId)
-        .then(response => {
-          this.articles = response.data;
-        });
+    this.getArticles();
+  },
+  methods:{
+    getArticles(){
+      this.$axios.get('/api/articles/article/tag/' + this.tag.id, {params: {page: this.page}})
+          .then(response => {
+            this.articles = response.data;
+          });
+    },
+
+    pageBefore(){
+      if(this.page > 1) {
+        this.page -= 1;
+        this.getArticles();
+      }
+    },
+
+    pageAfter(){
+      this.page += 1;
+      this.getArticles();
+    }
   }
 }
 </script>
@@ -53,5 +80,22 @@ export default {
 <style scoped>
   .tag-h{
     color: cadetblue;
+  }
+
+  .btn-outline-primary{
+    color: cadetblue !important;
+    border-color: cadetblue;
+    margin: 10px;
+  }
+
+  .btn-outline-primary:hover{
+    background-color: cadetblue !important;
+    color: white !important;
+    border-color: cadetblue !important;
+  }
+
+  .btn-outline-primary:focus{
+    border-color: cadetblue;
+    box-shadow: 0 0 0 0.2rem rgb(95, 158, 160, 0.25);
   }
 </style>
