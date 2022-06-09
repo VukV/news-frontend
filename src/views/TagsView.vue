@@ -5,9 +5,15 @@
     <h6 class="tag-h">{{ tag.name }}</h6>
     <br>
 
-    <div v-for="a in articles" :key="a.id" class="articles-div">
-      <ArticleComponent :article="a"></ArticleComponent>
+    <div v-if="articles.length !== 0">
+      <div v-for="a in articles" :key="a.id" class="articles-div">
+        <ArticleComponent :article="a"></ArticleComponent>
+      </div>
     </div>
+    <div v-else>
+      <p class="nothing-found">There are no articles with selected tag ...</p>
+    </div>
+
   </div>
 </template>
 
@@ -39,7 +45,7 @@ export default {
     this.$axios.get('/api/articles/article/tag/' + tagId)
         .then(response => {
           this.articles = response.data;
-        })
+        });
   }
 }
 </script>

@@ -126,7 +126,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
   .single-article-view-div{
     margin-top: 2em;
   }
@@ -139,7 +139,6 @@ export default {
   .tag-span:hover{
     cursor: pointer;
   }
-
 
   .btn-primary{
     background-color: cadetblue !important;

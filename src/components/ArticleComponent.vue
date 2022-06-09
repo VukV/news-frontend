@@ -24,7 +24,7 @@ export default {
     this.$axios.get('/api/categories/article/' + this.article.id)
         .then(response => {
           this.category = response.data
-        })
+        });
   },
   methods:{
     openArticle(article){

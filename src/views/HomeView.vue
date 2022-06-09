@@ -2,8 +2,13 @@
   <div>
     <TitleComponent title="Home" description="Newest articles"></TitleComponent>
 
-    <div v-for="a in articles" :key="a.id" class="articles-div">
-      <ArticleComponent :article="a"></ArticleComponent>
+    <div v-if="articles.length !== 0">
+      <div v-for="a in articles" :key="a.id" class="articles-div">
+        <ArticleComponent :article="a"></ArticleComponent>
+      </div>
+    </div>
+    <div v-else>
+      <p class="nothing-found">There are no articles...</p>
     </div>
 
   </div>
@@ -29,7 +34,7 @@ export default {
    this.$axios.get('/api/articles/newest')
        .then(response => {
          this.articles = response.data;
-       })
+       });
   }
 }
 </script>
