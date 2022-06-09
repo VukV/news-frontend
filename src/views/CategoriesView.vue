@@ -26,8 +26,8 @@
 
     <div class="pageable-div">
       <span>
-        <button type="button" class="btn btn-outline-primary" @click="pageBefore">&lt;&lt;</button>
-        <button type="button" class="btn btn-outline-primary" @click="pageAfter">&gt;&gt;</button>
+        <button type="button" class="btn btn-outline-primary fw-bold" @click="pageBefore">&lt;&lt;</button>
+        <button type="button" class="btn btn-outline-primary fw-bold" @click="pageAfter">&gt;&gt;</button>
       </span>
     </div>
 
