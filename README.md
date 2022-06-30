@@ -1,6 +1,6 @@
 # News 
 
-### Frontent (User App)
+### Frontend (User App)
 
 This is a part of fullstack web application project for Web Programming course at Faculty of Computing.
 
