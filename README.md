@@ -1,24 +1,14 @@
-# vvukovic9420rn_projekat_vue
+# News 
 
-## Project setup
-```
-npm install
-```
+### Frontent (User App)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+This is a part of fullstack web application project for Web Programming course at Faculty of Computing.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+The purpose of the project was to learn HTTP, REST, Vue and backend-frontend integration.
 
-### Lints and fixes files
-```
-npm run lint
-```
+This Vue app is responsible for viewing articles and filtering them by category, tag or date. It also provides functionality of leaving comments on currently open article.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+All parts of this project:
+- [Backend](https://github.com/VukV/news-backend)
+- [Frontend (User App)](https://github.com/VukV/news-frontend)
+- [Frontend (Admin App)](https://github.com/VukV/news-frontend-admin)
